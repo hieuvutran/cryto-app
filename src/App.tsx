@@ -21,10 +21,6 @@ function App() {
           </div>
         </Layout>
       <div className='footer'>
-        <Typography.Title level={5} style={{color:'white', textAlign:'center'}}>
-            CryptoVest<br/>
-            by 🚀 <a href='https://github.com/hafizmp' target="_blank" rel="noreferrer" style={{color:"#A5C9CA"}}>CodeKofy</a>
-        </Typography.Title>
         <Space>
           <Link to='/'>Home</Link>
           <Link to='/cryptocurrencies'>Cryptocurrencies</Link>

@@ -1,3 +1,4 @@
+import React from 'react'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -7,24 +8,27 @@ import {
     Title,
     Tooltip,
     Legend,
-  } from "chart.js";
+  } from 'chart.js';
+
   import { Line } from "react-chartjs-2"; 
   import { Typography } from "antd";
   
-  const LineChart = ({ coinHistory, currentPrice, coinName }) => {
+  const LineChart = ({ coinHistory, currentPrice, coinName }: any) => {
     const coinPrice = [];
     const coinTimestamp = [];
   
-    for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
-      coinPrice.push(coinHistory?.data?.history[i].price);
-    }
-  
-    for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
-      coinTimestamp.push(
-        new Date(
-          coinHistory?.data?.history[i].timestamp * 1000
-        ).toLocaleDateString()
-      );
+    if (coinHistory && coinHistory.data && coinHistory.data.history) {
+      for (let i = 0; i < coinHistory.data.history.length; i += 1) {
+        coinPrice.push(coinHistory.data.history[i].price);
+      }
+    
+      for (let i = 0; i < coinHistory.data.history.length; i += 1) {
+        coinTimestamp.push(
+          new Date(
+            coinHistory.data.history[i].timestamp * 1000
+          ).toLocaleDateString()
+        );
+      }
     }
   
     const data = {
@@ -40,17 +44,6 @@ import {
       ],
     };
   
-    const options = {
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
-      },
-    };
     ChartJS.register(
       CategoryScale,
       LinearScale,
@@ -68,14 +61,14 @@ import {
         </Typography.Title>
   
         <Typography.Title level={5} className="price-change">
-          Change: {coinHistory?.data?.change}%
+          Change: {coinHistory && coinHistory.data ? coinHistory.data.change : ''}%
         </Typography.Title>
 
         <Typography.Title level={5} className="current-price">
           Current {coinName} Price: $ {currentPrice}
         </Typography.Title>
         
-        <Line data={data} options={options}/>
+        <Line data={data} />
       </>
     );
   };

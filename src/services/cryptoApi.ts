@@ -5,7 +5,7 @@ const cryptoApiHeaders = {
     'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_KEY,
 }
 
-const createRequest = (url) => ({url,headers:cryptoApiHeaders})
+const createRequest = (url: string) => ({url,headers:cryptoApiHeaders})
 
 export const cryptoApi = createApi({
     reducerPath: 'cryptoApi',
@@ -20,9 +20,6 @@ export const cryptoApi = createApi({
         getCryptoHistory:builder.query({
             query: ({coinId,timePeriod}) => createRequest(`/coin/${coinId}/history?timePeriod=${timePeriod}`)
         }),
-        // getExchanges: builder.query({
-        //     query: () => createRequest('/exchanges'),
-        // }),
     })
 
 });
